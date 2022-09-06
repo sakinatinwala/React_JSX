@@ -1,0 +1,20 @@
+.card_style{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:red;
+}
+
+.area{
+    height: 5rem;
+}
+
+.Button{
+    background-color:aliceblue;
+}
+
+.background{
+    background-color:bisque;
+}
