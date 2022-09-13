@@ -126,8 +126,7 @@ export const SignUp = () => {
           id="demo-simple-select"
           value={age}
           label="Age"
-          onChange={handleChange} {...register('SelectAge',{
-            required:true})}
+          onChange={handleChange} 
         >
           <MenuItem value={10}>5</MenuItem>
           <MenuItem value={20}>6</MenuItem>
@@ -154,8 +153,7 @@ export const SignUp = () => {
           id="demo-simple-select"
           value={Country}
           label="Country"
-          onChange={handleChange3} {...register('SelectCountry',{
-            required:true})}
+          onChange={handleChange3} 
         >
           <MenuItem value={10}>India</MenuItem>
           <MenuItem value={20}>USA</MenuItem>
@@ -175,8 +173,7 @@ export const SignUp = () => {
           id="demo-simple-select"
           value={State}
           label="State"
-          onChange={handleChange2} {...register('SelectState',{
-            required:true})}
+          onChange={handleChange2} 
         >
           <MenuItem value={10}>Gujarat</MenuItem>
           <MenuItem value={20}>Maharastra</MenuItem>
@@ -198,8 +195,7 @@ export const SignUp = () => {
           id="demo-simple-select"
           value={city}
           label="City"
-          onChange={handleChange1} {...register('selectCity',{
-            required:true})}
+          onChange={handleChange1} 
         >
           <MenuItem value={10}>Ahmedabad</MenuItem>
           <MenuItem value={20}>Surat</MenuItem>

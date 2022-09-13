@@ -10,6 +10,7 @@ import {
   Link,
 } from "react-router-dom";
 
+
 function log(value) {
   console.log(value);
 }
