@@ -17,22 +17,21 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
 export const SignUp = () => {
   const paperStyle={padding:'10px', width:500, margin:"2% auto"}
   const headerStyle={margin:0}
   const [formData,setFormData] =React.useState({})
 
   const schema = yup.object().shape({
-    name: yup.string().required(),
-    surname: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(8).max(32).required(),
-    select: yup.number().required(),
-    select: yup.string().required(),
-    select: yup.string().required(),
-    select: yup.string().required(),
-    address: yup.string().required(),
+    Name: yup.string().required(),
+    Surname: yup.string().required(),
+    Email: yup.string().email().required(),
+    Password: yup.string().min(8).max(32).matches(/[a-zA-Z]/).required(),
+    Select_Age: yup.number().required(),
+    Select_Country: yup.string().required(),
+    Select_State: yup.string().required(),
+    Select_City: yup.string().required(),
+    Address: yup.string().required(),
   });
 
   const {register, resetField, handleSubmit, formState: { errors } } = useForm({
@@ -92,22 +91,22 @@ export const SignUp = () => {
                 <Grid item xs={6}>
                 <TextField fullWidth label='Name'  placeholder="Enter Name" 
                  {...register("examplefirstName",{required:true,maxLength:20})}/> 
-                   <p>{errors.name?.message}</p>
+                  <span style={{color:'red'}}>{errors.Name?.message}</span> 
                    </Grid>
                    <Grid item xs={6}>
                 <TextField fullWidth label='Surname'  placeholder="Enter Surname"
-                {...register("exampleSurname",{required:true})}/> <br />
-                 <p>{errors.surname?.message}</p>
+                {...register("exampleSurname",{required:true})}/>
+                 <span style={{color:'red'}}>{errors.Surname?.message}</span>
                  </Grid>
                  <Grid item xs={6}>
                 <TextField fullWidth label='Email' placeholder="Enter Email" 
                  {...register("exampleRequiredEmail", { required :true})}/> 
-                 <p> {errors.email?.message}</p>
+                 <span style={{color:'red'}}> {errors.Email?.message}</span>
                  </Grid>
                  <Grid item xs={6}>
                 <TextField fullWidth label='Password'  placeholder="Enter Password" type='password' 
-                {...register("examplePwd",{required:true})}/> <br />
-                <p>{errors.password?.message}</p>
+                {...register("examplePwd",{required:true})}/>
+                <span style={{color:'red'}}>{errors.Password?.message}</span>
                 </Grid>
                 <Grid item xs={12}>
                 <FormControl component="fieldset" >
@@ -138,7 +137,7 @@ export const SignUp = () => {
           <MenuItem value={30}>10</MenuItem>
         </Select>
       </FormControl>
-      <p>{errors.select?.message}</p>
+      <span style={{color:'red'}}>{errors.Select_Age?.message}</span>
       </Grid>
 
       <Grid item xs={6}>
@@ -165,7 +164,7 @@ export const SignUp = () => {
         
         </Select>
       </FormControl>
-       <p>{errors.select?.message}</p>
+      <span style={{color:'red'}}>{errors.Select_Country?.message}</span>
      </Grid>
    
        <Grid item xs={6}>
@@ -187,7 +186,7 @@ export const SignUp = () => {
         
         </Select>
       </FormControl>
-      <p>{errors.select?.message}</p>
+      <span style={{color:'red'}}>{errors.Select_State?.message}</span>
       </Grid>
 
 
@@ -210,7 +209,7 @@ export const SignUp = () => {
         
         </Select>
       </FormControl>
-      <p>{errors.select?.message}</p>
+      <span style={{color:'red'}}>{errors.Select_City?.message}</span>
       </Grid>
 
       <Grid item xs={6}>
@@ -220,7 +219,7 @@ export const SignUp = () => {
       style={{ width: 215, height : 50}}
       {...register('exampleAddress',{
         required:true})}/> 
-     <p>{errors.address?.message}</p>
+     <span style={{color:'red'}}>{errors.Address?.message}</span>
      </Grid>
                 <Grid item xs={12}>
                 <FormControlLabel control={<Checkbox name="checkedA"/>}

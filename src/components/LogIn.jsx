@@ -16,7 +16,7 @@ export const Login = () => {
       
       const schema = yup.object().shape({
         email: yup.string().email().required(),
-        password: yup.string().min(8).max(32).required(),
+        password: yup.string().min(8).max(32).matches(/[a-zA-Z]/).required(),
       });
 
       const { handleSubmit, register,formState: { errors } } = useForm({
@@ -36,12 +36,12 @@ export const Login = () => {
            
             <TextField fullWidth label='Email' placeholder="Enter Email" 
                  {...register("exampleRequiredEmail", { required:true})}/> 
-                <p>{errors.email?.message}</p> 
+                <span style={{color:'red'}}>{errors.email?.message} </span> <br /> <br />
 
             <TextField label='Password' placeholder='Enter Password' type='password' fullWidth 
             {...register("examplePwd",
             {required:true})}/>
-             <p>{errors.password?.message}</p>
+             <span style={{color:'red'}}>{errors.password?.message}</span>
 
             <FormControlLabel control={<Checkbox name = "checked" color="primary"/>}
                   label="Remember me" /> <br />
