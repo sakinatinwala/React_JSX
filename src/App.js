@@ -9,14 +9,18 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-
+import { createContext } from 'react';
+import {Component1} from './components/Context';
 
 function log(value) {
   console.log(value);
 }
+const userContext = createContext();
+
 
 function App() {
   return (
+    <userContext.Provider >
     <div>
       <BrowserRouter>
        <div>
@@ -38,10 +42,9 @@ function App() {
      </Routes>
      
      </BrowserRouter>
-
-     
-
-    </div>
+      <Component1 />
+     </div>
+  </userContext.Provider>
   );
 }
 
