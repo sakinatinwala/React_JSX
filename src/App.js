@@ -1,7 +1,7 @@
 import './App.css';
 import { SignUp } from './components/Register';
 import {Login} from './components/LogIn';
-import React from 'react';
+import React, {useState} from 'react';
 import {StarRating} from './components/StarRating';
 import {
   BrowserRouter,
@@ -15,12 +15,25 @@ import {Component1} from './components/Context';
 function log(value) {
   console.log(value);
 }
-const userContext = createContext();
-
+const UserContext = createContext();
+export const UserDispatchContext = createContext();
 
 function App() {
+  const [userDetails, setUserDetails] = useState({
+    Name: "",
+    Surname: "",
+    Email: "",
+    Password: "",
+    Select_Age: "",
+    Select_Country: "",
+    Select_State:"",
+    Select_City: "",
+    Address: "",
+});
+
   return (
-    <userContext.Provider >
+    <UserContext.Provider value={userDetails}>
+      <UserDispatchContext.Provider value={setUserDetails}>
     <div>
       <BrowserRouter>
        <div>
@@ -44,7 +57,8 @@ function App() {
      </BrowserRouter>
       <Component1 />
      </div>
-  </userContext.Provider>
+     </UserDispatchContext.Provider>
+  </UserContext.Provider>
   );
 }
 
