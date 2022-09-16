@@ -1,33 +1,41 @@
-import React, { createContext, useContext } from "react";
-import { SignUp } from "./Register";
-//import { Login } from "./LogIn";
-import { useEffect } from "react";
- 
- export const UserContext = createContext();
+import React, { useCallback, useMemo, useContext, createContext } from "react";
 
- export const Component1 = (props) => {
-    const [data, setData] = useContext(SignUp,[], () => {
-      const localData = localStorage.getItem('data');
-      return localData ? JSON.parse(localData) : [];
-    });
-    useEffect(() => {
-      localStorage.setItem('data',JSON.stringify(data))
-    },[data]);
+const UserContext = createContext(null);
 
-    return (
-      <UserContext.Provider value={{data,setData}}>
-        {props.childern}
-      </UserContext.Provider>
-     )
-  }
- 
+export const Provider = ({ children }) => {
 
-// export const Header = () => {
-//   return (
-//     <nav id="navigation">
-//       <h1 href="Login" className="logo">
-//         <Login />
-//       </h1>
-//     </nav>
-//   );
-// };
+  const addUser = useCallback((item) => {
+    const signupData = localStorage.getItem("data");
+    if (signupData !== null) {
+      const currentData = JSON.parse(signupData);
+      if (currentData?.length) {
+        const newData = [...currentData, item];
+        localStorage.setItem("data", JSON.stringify(newData));
+      } else {
+        localStorage.setItem("data", JSON.stringify([item]));
+      }
+    } else {
+      localStorage.setItem("data", JSON.stringify([item]));
+    }
+  }, []);
+
+  // const fetchUsers = () => {
+  //   return signUpdata ? JSON.parse(signUpdata) : [];
+  // };
+
+  const value = useMemo(
+    () => ({
+      addUser,
+      // fetchUsers,
+    }),
+    [addUser]
+  );
+
+  return <UserContext.Provider value={value}>
+    {children}
+    </UserContext.Provider>;
+};
+
+export const Context = () => {
+  return useContext(UserContext);
+}

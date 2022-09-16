@@ -16,22 +16,25 @@ import Select from '@mui/material/Select';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {Context} from "./Context";
 
 export const SignUp = () => {
-  const paperStyle={padding:'10px', width:500, margin:"2% auto"}
+  const paperStyle={padding:'5px', width:500, margin:"0% auto"}
   const headerStyle={margin:0}
   const [formData,setFormData] =React.useState({})
 
+  const {addUser} = Context()
+
   const schema = yup.object().shape({
-    Name: yup.string().required(),
-    Surname: yup.string().required(),
-    Email: yup.string().email().required(),
-    Password: yup.string().min(8).max(32).matches(/[a-zA-Z]/).required(),
-    Select_Age: yup.number().required(),
-    Select_Country: yup.string().required(),
-    Select_State: yup.string().required(),
-    Select_City: yup.string().required(),
-    Address: yup.string().required(),
+    // Name: yup.string().required(),
+    // Surname: yup.string().required(),
+    // Email: yup.string().email().required(),
+    // Password: yup.string().min(8).max(32).matches(/[a-zA-Z]/).required(),
+    // Select_Age: yup.number().required(),
+    // Select_Country: yup.string().required(),
+    // Select_State: yup.string().required(),
+    // Select_City: yup.string().required(),
+    // Address: yup.string().required(),
   });
 
   const {register, resetField, handleSubmit, formState: { errors } } = useForm({
@@ -39,6 +42,7 @@ export const SignUp = () => {
   });
   const onSubmit = (data) => {
     setFormData(data)
+    addUser(data)
   };
   
   useEffect(()=>{
@@ -222,7 +226,7 @@ export const SignUp = () => {
                 label="I accept the terms and conditions.." /> 
                 </Grid>
               <Grid item xs={6} align="center">
-                <Button type="submit" variant="contained" color="primary" >Sign Up</Button> <n/> <n/>
+                <Button type="submit" variant="contained" color="primary" onClick={onSubmit} >Sign Up</Button> <n/> <n/>
                 </Grid>
                 <Grid item xs={6} align="center">
                 <Button type="reset" variant="contained" color="primary" onClick={onResetForm}>Reset</Button>

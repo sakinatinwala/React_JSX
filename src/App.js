@@ -10,7 +10,7 @@ import {
   Link,
 } from "react-router-dom";
 import { createContext } from 'react';
-import {Component1} from './components/Context';
+import { Provider } from "./components/Context";
 
 function log(value) {
   console.log(value);
@@ -47,15 +47,14 @@ function App() {
             <Link to="StarRating"> StarRating</Link>
            </div>
           </div>
-    
+    <Provider>
      <Routes>
        <Route path='/' element={<Login /> } />
        <Route path='signup' element={<SignUp /> } />
        <Route path='StarRating' element={<StarRating onChange={log} /> } />
      </Routes>
-     
+     </Provider>
      </BrowserRouter>
-      <Component1 />
      </div>
      </UserDispatchContext.Provider>
   </UserContext.Provider>
