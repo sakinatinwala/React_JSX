@@ -10,8 +10,12 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {Context} from "./Context";
+import {useDispatch, useSelector} from "react-redux";
 
-export const Login = () => {
+export const Login = (props) => {
+  const count = useSelector((state)=> state.login);
+  const login = useDispatch();
+
   let signupData = localStorage.getItem("data")
   const {fetchUsers} = Context()
 
@@ -35,6 +39,7 @@ export const Login = () => {
       
       return (
         <Grid>
+          <h1>{count}</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Paper style={paperStyle} elevation="10" >
             
@@ -52,7 +57,9 @@ export const Login = () => {
             <FormControlLabel control={<Checkbox name = "checked" color="primary"/>}
                   label="Remember me" /> <br />
 
-            <Button type="submit" color="primary" variant="contained" fullWidth onClick={onSubmit} > Sign In </Button> <br /> <br />
+            <Button type="submit" color="primary" variant="contained" fullWidth onClick={() => {
+              login({type:"Data"})
+            }} > Sign In </Button> <br /> <br />
             
                   <Typography> Do you have an account ? <n/> <n/>
 
@@ -62,7 +69,7 @@ export const Login = () => {
           
                  </Typography>
            
-            </Paper>  
+            </Paper>
             </form>
            </Grid>
       )
