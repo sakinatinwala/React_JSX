@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { createContext } from 'react';
 import { Provider } from "./components/Context";
+import {Counter} from "./components/Counter";
 
 function log(value) {
   console.log(value);
@@ -55,6 +56,7 @@ function App() {
      </Routes>
      </Provider>
      </BrowserRouter>
+     <Counter />
      </div>
      </UserDispatchContext.Provider>
   </UserContext.Provider>
