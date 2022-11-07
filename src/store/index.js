@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 
-const counterReducer = (state = {counter:''},action) => {
+const counterReducer = (state = {counter:0},action) => {
     if (action.type === "Data" ) {
         return {counter:state.counter + action.state};
     }

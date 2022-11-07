@@ -10,11 +10,11 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {Context} from "./Context";
-//import {useDispatch, useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 export const Login = (props) => {
-  // const count = useSelector((state)=> state.login);
-  // const login = useDispatch();
+  const count = useSelector((state)=> state.login);
+  const login = useDispatch();
 
   let signupData = localStorage.getItem("data")
   const {fetchUsers} = Context()

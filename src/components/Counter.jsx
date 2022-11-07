@@ -11,7 +11,7 @@ export const Counter = (props) => {
       <h1>{count}</h1>
       <button
         onClick={() => {
-          counter({ type: "Data" });
+          counter({ type: "Data",state:3 });
         }}
       >
       </button>
